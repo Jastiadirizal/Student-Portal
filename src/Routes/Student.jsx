@@ -11,7 +11,7 @@ const Student = () => {
 
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+
   const [update, setUpdate] = useState(1);
   const [selectFaculty, setSelectFaculty] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
@@ -25,9 +25,9 @@ const Student = () => {
         setLoading(false);
       })
       .catch((error) => {
-        setError(error);
+        console.error(error);
         setLoading(false);
-        setUpdate(update++);
+        setUpdate((prevUpdate) => prevUpdate + 1);
       });
   }, [update]);
 
