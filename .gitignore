@@ -68,4 +68,3 @@ node_modules/
 # file yang ada di firebase
 .firebaserc
 firebase.json
-build/
