@@ -9,7 +9,6 @@ import backgroundImage from "../img/discuss.jpg";
 const AddStudent = () => {
   const navigate = useNavigate();
   const [student, setStudent] = useState({ fullname: "", profilePicture: "", address: "", birthDate: "", gender: "", phoneNumber: "", faculty: "", programStudy: "" });
-  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,7 +20,7 @@ const AddStudent = () => {
 
     try {
       const url = "https://6497a1299543ce0f49e14cfd.mockapi.io/studentData/";
-      const response = await fetch(url, {
+      await fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -31,10 +30,10 @@ const AddStudent = () => {
           faculty: getFaculty(student.programStudy),
         }),
       });
-      const data = await response.json();
+
       navigate("/student");
     } catch (error) {
-      setError(error);
+      console.error(error);
     }
   };
 
