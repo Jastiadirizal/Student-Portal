@@ -10,7 +10,7 @@ const EditStudent = () => {
   const navigate = useNavigate();
   const [student, setStudent] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+
   const { id } = useParams();
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const EditStudent = () => {
         setStudent(data);
         setLoading(false);
       } catch (error) {
-        setError(error);
+        console.error(error);
         setLoading(false);
       }
     };
@@ -64,17 +64,17 @@ const EditStudent = () => {
   const submit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`https://6497a1299543ce0f49e14cfd.mockapi.io/studentData/${id}`, {
+      await fetch(`https://6497a1299543ce0f49e14cfd.mockapi.io/studentData/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(student),
       });
-      const data = await response.json();
+
       navigate("/student");
     } catch (error) {
-      setError(error);
+      console.error(error);
     }
   };
 
@@ -106,7 +106,6 @@ const EditStudent = () => {
             <Flex mt="14" flexDirection={"column"}>
               <Box justifyContent="center" alignItems="center">
                 <Image as={"img"} src={student.profilePicture} alt="Profile Picture" border={"4px"} borderRadius="md" boxSize="180px" mx="auto"></Image>
-                <img />
               </Box>
 
               <Box mt={10}>
